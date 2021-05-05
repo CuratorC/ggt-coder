@@ -28,6 +28,8 @@ Route::prefix('v1')
                 // 删除token
                 Route::delete('authorizations/current', 'AuthorizationsController@destroy')
                     ->name('authorizations.destroy');*/
+                // 获取上传信息
+                Route::get('resource_storage/cover_sign', [\App\Http\Controllers\Api\ResourceStoragesController::class, 'coverSign'])->name('resource_storage.cover_sign');
             });
 
         Route::middleware([
