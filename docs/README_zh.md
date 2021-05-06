@@ -31,8 +31,8 @@
 
 ```
 项目地址
-github 地址: git clone https://github.com/CuratorC/ggt-coder-exe.git
-aliyun 分流: git clone https://code.aliyun.com/CuratorC/ggt-coder-exe.git
+github : git clone https://github.com/CuratorC/ggt-coder.git
+gitee : git clone https://gitee.com/Curator/ggt-coder.git
 ```
 
 ## Start
