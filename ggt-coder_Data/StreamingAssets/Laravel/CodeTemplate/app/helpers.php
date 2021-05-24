@@ -7,7 +7,7 @@
  */
 function get_str_random($length = 6): string
 {
-    return get_random($length, '123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ');
+  return get_random($length, '123456789abcdefghijklmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ');
 }
 
 /**
@@ -20,12 +20,12 @@ function get_str_random($length = 6): string
  */
 function get_random(int $length, $chars = '0123456789'): string
 {
-    $hash = '';
-    $max = strlen($chars) - 1;
-    for($i = 0; $i < $length; $i++) {
-        $hash .= $chars[mt_rand(0, $max)];
-    }
-    return $hash;
+  $hash = '';
+  $max = strlen($chars) - 1;
+  for ($i = 0; $i < $length; $i++) {
+    $hash .= $chars[mt_rand(0, $max)];
+  }
+  return $hash;
 }
 
 /**
@@ -37,7 +37,7 @@ function get_random(int $length, $chars = '0123456789'): string
  */
 function format_money($obj): string
 {
-    return number_format($obj, 2);
+  return number_format($obj, 2);
 }
 
 /**
@@ -49,7 +49,7 @@ function format_money($obj): string
  */
 function format_decimal($decimal): float
 {
-        return round($decimal,2);
+  return round($decimal, 2);
 }
 
 /**
@@ -61,11 +61,11 @@ function format_decimal($decimal): float
  */
 function format_show_phone($phone): string
 {
-    if (strlen($phone) == 11) {
-        return substr($phone, 0, 3) . ' ' . substr($phone, 3, 4) . ' ' . substr($phone, 7);
-    } else {
-        return $phone;
-    }
+  if (strlen($phone) == 11) {
+    return substr($phone, 0, 3) . ' ' . substr($phone, 3, 4) . ' ' . substr($phone, 7);
+  } else {
+    return $phone;
+  }
 }
 
 /**
@@ -77,11 +77,11 @@ function format_show_phone($phone): string
  */
 function format_hidden_phone($phone): string
 {
-    if (strlen($phone) == 11) {
-        return substr($phone, 0, 3) . ' **** ' . substr($phone, 7);
-    } else {
-        return substr($phone, 0, 3) . '???';
-    }
+  if (strlen($phone) == 11) {
+    return substr($phone, 0, 3) . ' **** ' . substr($phone, 7);
+  } else {
+    return substr($phone, 0, 3) . '???';
+  }
 }
 
 /**
@@ -93,13 +93,13 @@ function format_hidden_phone($phone): string
  */
 function replace_money($string)
 {
-    if (is_array($string) || is_object($string)) {
-        $return = array();
-        foreach ($string as $item) {
-            $return[] = (float)str_replace(',', '', $item);
-        }
-        return $return;
-    }else return (float)str_replace(',', '', $string);
+  if (is_array($string) || is_object($string)) {
+    $return = array();
+    foreach ($string as $item) {
+      $return[] = (float)str_replace(',', '', $item);
+    }
+    return $return;
+  } else return (float)str_replace(',', '', $string);
 }
 
 /**
@@ -111,9 +111,9 @@ function replace_money($string)
  */
 function datetime_to_date($string)
 {
-    $result = explode(' ', $string);
-    if (is_array($result)) return $result[0];
-    else return $result;
+  $result = explode(' ', $string);
+  if (is_array($result)) return $result[0];
+  else return $result;
 }
 /**
  * @description 将多维数组转换为一维数组
@@ -125,17 +125,16 @@ function datetime_to_date($string)
  */
 function array_to_dimension($arr, $return = []): array
 {
-    if (is_dimensions($arr)) {
-        // 是多维数组，对其中每一位都调用变换
-        foreach ($arr as $item) {
-            $return = array_to_dimension($item, $return);
-        }
-    } else {
-        // 不是多维，将 arr 并入 return ,返回 return
-        $return = array_merge($return, $arr);
-
+  if (is_dimensions($arr)) {
+    // 是多维数组，对其中每一位都调用变换
+    foreach ($arr as $item) {
+      $return = array_to_dimension($item, $return);
     }
-    return $return;
+  } else {
+    // 不是多维，将 arr 并入 return ,返回 return
+    $return = array_merge($return, $arr);
+  }
+  return $return;
 }
 
 /**
@@ -147,7 +146,7 @@ function array_to_dimension($arr, $return = []): array
  */
 function is_dimensions($arr): bool
 {
-    return !(count($arr) == count($arr, 1));
+  return !(count($arr) == count($arr, 1));
 }
 
 /**
@@ -158,9 +157,9 @@ function is_dimensions($arr): bool
  * @author CuratorC
  * @date 2021/3/4
  */
-function create_under_score($camelCaps,$separator='_'): string
+function create_under_score($camelCaps, $separator = '_'): string
 {
-    return strtolower(preg_replace('/([a-z])([A-Z])/', "$1" . $separator . "$2", $camelCaps));
+  return strtolower(preg_replace('/([a-z])([A-Z])/', "$1" . $separator . "$2", $camelCaps));
 }
 /**
  * @description 对象是否为集合
@@ -171,7 +170,7 @@ function create_under_score($camelCaps,$separator='_'): string
  */
 function object_is_collection($object): bool
 {
-    return get_class($object) == \Illuminate\Database\Eloquent\Collection::class;
+  return get_class($object) == \Illuminate\Database\Eloquent\Collection::class;
 }
 
 
@@ -186,8 +185,60 @@ function object_is_collection($object): bool
  */
 function response_success($message = '操作成功', $data = [], $status = 200)
 {
-    return response(array_filter([
-        'message'   => $message,
-        'data'      => $data,
-    ]), $status);
+  return response(array_filter([
+    'message'   => $message,
+    'data'      => $data,
+  ]), $status);
+}
+
+function response_error($error,  $status = 422): \Illuminate\Http\JsonResponse
+{
+  if (is_string($error) && is_array(json_decode($error, true))) $error = json_decode($error, true);
+
+  if (is_array($error)) {
+    if (is_double_array($error)) $errors = $error;
+    else $errors = ['error' => $error];
+  } else {
+    $errors = ['error'  => [$error]];
+  }
+
+  // 创建 message
+  $message = create_message_by_errors($errors);
+
+  return response()->json(compact('message', 'errors'), $status);
+}
+
+/**
+ *ㅤ是二位数组
+ * @param $array
+ * @return bool
+ * @date 2020/10/20
+ * @author CuratorC
+ */
+function is_double_array($array)
+{
+  if (is_array($array)) {
+    foreach ($array as $item) {
+      if (is_array($item)) return true;
+    }
+  }
+  return false;
+}
+
+/**
+ *ㅤ根据 exception 中的 errors 创建 message
+ * @param $errors
+ * @return string
+ * @date 2020/10/20
+ * @author CuratorC
+ */
+function create_message_by_errors($errors): string
+{
+  $errorMessage = [];
+  foreach ($errors as $error) {
+    foreach ($error as $item) {
+      $errorMessage[] = $item;
+    }
+  }
+  return implode(", ", $errorMessage);
 }
